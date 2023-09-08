@@ -1,18 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- * main - Entry point
- * Description: Get a leter and compare it to letter z
- * Return : Always 0 (success)
+ * main - main block
+ *
+ * Description: Get a random number and check its last digit, compare it with 5
+ *
+ * Return : 0
  */
 int main(void)
 {
-	char x = 'a';
+	char c = 'a';
 
-	while (x <= 'z')
+	while (c <= 'z')
 	{
-		putchar(x);
-		x++;
+		putchar(c);
+		c++;
 	}
 
 	putchar('\n');
