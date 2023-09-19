@@ -1,39 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
 
 /**
- * main - print password.
- *
- * Return: 0.
+ * checksum - computes the checksum of a string
+ * @s: input string
+ * Return: the computed checksum
  */
+unsigned long checksum(char *s)
+{
+    unsigned long sum = 0;
+    while (*s != '\0')
+    {
+        sum += *s;
+        s++;
+    }
+    return sum;
+}
 
 int main(void)
 {
-	int ascii = 2772, i = 0, j, random;
-	char password[100];
-	time_t t;
+    char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    char password[33];
+    unsigned long sum;
 
-	srand((int) time(&t));
-	while (ascii > 126)
-	{
-		random = rand() % 126;
-		password[i] = random;
-		ascii -= random;
-		i++;
-	}
-	if (ascii > 0)
-		password[i] = ascii;
-	else
-	{
-		i--;
-	}
-	
+    srand((unsigned int)time(NULL));
 
-	for (j = 0; j <= i; j++)
-	{
-		printf("%c", password[j]);
-	}
-	return (0);
+    // Generate a password without null bytes
+    do
+    {
+        for (int i = 0; i < 32; i++)
+        {
+            password[i] = alpha[rand() % (sizeof(alpha) - 1)];
+        }
+        password[32] = '\0';
+        sum = checksum(password);
+    } while (sum != 2772);
+
+    printf("%s\n", password);
+
+    return 0;
 }

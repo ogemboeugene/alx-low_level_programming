@@ -1,23 +1,6 @@
-
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-
-/**
- * checksum - computes the checksum of a string
- * @s: input string
- * Return: the computed checksum
- */
-unsigned long checksum(char *s)
-{
-    unsigned long sum = 0;
-    while (*s != '\0')
-    {
-        sum += *s;
-        s++;
-    }
-    return sum;
-}
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
@@ -28,16 +11,23 @@ int main(int argc, char *argv[])
     }
 
     char *provided_password = argv[1];
-    unsigned long provided_checksum = checksum(provided_password);
+    unsigned long sum = 0;
 
-    if (provided_checksum == 2772)
+    // Calculate the sum of ASCII values of characters in the provided password
+    for (int i = 0; i < strlen(provided_password); i++)
+    {
+        sum += provided_password[i];
+    }
+
+    if (sum == 2772)
     {
         printf("Tada! Congrats\n");
-        return 0;
     }
     else
     {
-        printf("Invalid password\n");
-        return 1;
+        fprintf(stderr, "[Anything]\n");
     }
+
+    return 0;
 }
+
