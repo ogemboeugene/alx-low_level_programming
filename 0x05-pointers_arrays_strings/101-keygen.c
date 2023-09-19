@@ -23,13 +23,14 @@ int main(void)
     char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     char password[33];
     unsigned long sum;
+    int i;
 
     srand((unsigned int)time(NULL));
 
-    // Generate a password without null bytes
+    /* Generate a password without null bytes */
     do
     {
-        for (int i = 0; i < 32; i++)
+        for (i = 0; i < 32; i++)
         {
             password[i] = alpha[rand() % (sizeof(alpha) - 1)];
         }
@@ -41,3 +42,4 @@ int main(void)
 
     return 0;
 }
+
